@@ -4,11 +4,12 @@
 #include "tokens.h"
 #include "hash.h"
 
-hashtable_t *hashtab;
-int line_number = 1;
+char buf[12];
+int num_lines = 0;
 %}
 
 %%
-$[a-zA-Z][a-zA-Z0-9]*   {  ht_set(hashtab, yytext, TK_IDENTIFIER); }
+\n { ++num_lines; }
+[a-zA-Z][a-zA-Z0-9]*   { sprintf(buf, "%s%d", yytext, num_lines); ht_set(hashtable, buf, TK_IDENTIFIER); printf("%d", ht_get(hashtable, buf)); }
 [ \t]+                  /* ignore whitespace */;
 %%
