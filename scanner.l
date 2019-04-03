@@ -10,6 +10,7 @@ int num_lines = 0;
 
 %%
 \n { ++num_lines; }
-[a-zA-Z][a-zA-Z0-9]*   { sprintf(buf, "%s%d", yytext, num_lines); ht_set(hashtable, buf, TK_IDENTIFIER); printf("%d", ht_get(hashtable, buf)); }
+[a-zA-Z][a-zA-Z0-9]*   { sprintf(buf, "%s%d", yytext, num_lines); ht_set(hashtable, buf, TK_IDENTIFIER); printf("%d", TK_IDENTIFIER); }
 [ \t]+                  /* ignore whitespace */;
+[int] { sprintf(buf, "%s%d", yytext, num_lines); ht_set(hashtable, buf, KW_INT); printf("%d", KW_INT); }
 %%
