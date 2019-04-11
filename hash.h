@@ -7,7 +7,6 @@
 
 struct entry_s {
 	char *key;
-	char *attr;
 	int *token;
 	struct entry_s *next;
 };
@@ -31,6 +30,6 @@ entry_t *ht_newpair( char *key, int *value );
 
 void ht_set( hashtable_t *hashtable, char *key, int *value );
 
-char *ht_get( hashtable_t *hashtable, char *key );
+int *ht_get( hashtable_t *hashtable, char *key );
 
 #endif

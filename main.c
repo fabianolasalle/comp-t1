@@ -7,7 +7,7 @@ extern FILE *yyin;
 
 void initMe(void)
 {
-    hashtable = ht_create( 65536 );
+    hashtable = ht_create( 65535 );
 }
 
 int main (int argc, char *argv[])
