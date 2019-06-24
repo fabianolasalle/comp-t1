@@ -10,6 +10,10 @@ void initMe(void)
     hashtable = ht_create( 65535 );
 }
 
+void yyerror (char const *s) {
+   fprintf (stderr, "%s\n", s);
+}
+
 int main (int argc, char *argv[])
 {
     initMe();
@@ -18,8 +22,27 @@ int main (int argc, char *argv[])
     fp = fopen(argv[1], "r");
 
     yyin = fp;
-    yylex();
+    yyparse();
 
     fclose(fp);
     return 0;
 }
+
+
+
+
+// main()
+// {
+//  return(yyparse());
+// }
+
+// yyerror(s)
+// char *s;
+// {
+//   fprintf(stderr, "%s\n",s);
+// }
+
+// yywrap()
+// {
+//   return(1);
+// }
