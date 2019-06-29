@@ -19,7 +19,12 @@ input { print_token(yytext); return KW_INPUT; }
 output { print_token(yytext); return KW_OUTPUT; }
 return { print_token(yytext); return KW_RETURN; }
 
-[\,?\;?\:?\(?\)?\[?\]?\{?\}?\+?\-?\*?\/?\<?\>?\=?\!?\&?\$?] { return yytext[0]; }
+[\;?\:?\[?\]?\{?\}?\-?\*?\/?\<?\>?\=?\!?\&?\$?] { return yytext[0]; }
+\( { return yytext[0]; }
+\) { return yytext[0]; }
+\(\) { return yytext[0]; }
+\++ { return PLUSPLUS; }
+\, { return yytext[0]; }
 
 \<\= { print_token(yytext); return OP_LE; }
 \>\= { print_token(yytext); return OP_GE; }
@@ -30,7 +35,7 @@ return { print_token(yytext); return KW_RETURN; }
 
 FALSE { print_token(yytext); return LIT_FALSE; }
 TRUE { print_token(yytext); return LIT_TRUE; }
-\"[a-zA-Z]\" { print_token(yytext); return LIT_CHAR; }
+\"[a-zA-Z].+\" { print_token(yytext); return LIT_CHAR; }
 \$?[a-zA-Z]* { print_token(yytext); return TK_IDENTIFIER; }
 [0-9]* { print_token(yytext); return LIT_INTEGER; }
 
