@@ -12,6 +12,12 @@ void initMe(void)
 
 void yyerror (char const *s) {
    fprintf (stderr, "%s\n", s);
+   exit(3);
+}
+
+int yywrap()
+{
+  return(1);
 }
 
 int main (int argc, char *argv[])
@@ -40,9 +46,4 @@ int main (int argc, char *argv[])
 // char *s;
 // {
 //   fprintf(stderr, "%s\n",s);
-// }
-
-// yywrap()
-// {
-//   return(1);
 // }
