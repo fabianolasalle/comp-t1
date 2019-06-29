@@ -16,13 +16,13 @@ file: stmt
 
 stmt: expr
     | stmt expr
+    | output
     ;
 
 expr: TK_IDENTIFIER { printf("found IDENTIFIER\n"); }
     | LIT_INTEGER { printf("found VALUE INT\n"); }
     | LIT_FALSE { printf("found VALUE FALSE\n"); }
     | LIT_TRUE { printf("found VALUE TRUE\n"); }
-    | LIT_CHAR { printf("found VALUE CHAR\n"); }
     | KW_RETURN { printf("found RETURN\n"); }
     | KW_INT { printf("found INT\n"); }
     | KW_REAL { printf("found REAL\n"); }
@@ -32,7 +32,6 @@ expr: TK_IDENTIFIER { printf("found IDENTIFIER\n"); }
     | KW_ELSE { printf("found ELSE\n"); }
     | KW_LOOP { printf("found LOOP\n"); }
     | KW_INPUT { printf("found INPUT\n"); }
-    | KW_OUTPUT { printf("found OUTPUT\n"); }
     | expr '[' expr ']' { printf("\nFound: Variable attribution is ARRAY;\n"); }
     | expr '(' { printf("\nFound: Defining METHOD;\n"); }
     | expr ':' { printf("\nFound: Variable attribution START;\n"); }
@@ -44,10 +43,12 @@ expr: TK_IDENTIFIER { printf("found IDENTIFIER\n"); }
     | expr '>' expr
     | expr '=' expr
     | expr ';' expr
-    | expr '"' expr
-    | '++' expr
+    | "++" expr
     | '{'
     | '}'
-    | expr
+    ;
+
+output: LIT_CHAR { printf("found VALUE CHAR\n"); }
+    | "output" output
     ;
 %%

@@ -30,7 +30,7 @@ return { print_token(yytext); return KW_RETURN; }
 
 FALSE { print_token(yytext); return LIT_FALSE; }
 TRUE { print_token(yytext); return LIT_TRUE; }
-'[a-zA-Z]' { print_token(yytext); return LIT_CHAR; }
+\"[a-zA-Z]\" { print_token(yytext); return LIT_CHAR; }
 \$?[a-zA-Z]* { print_token(yytext); return TK_IDENTIFIER; }
 [0-9]* { print_token(yytext); return LIT_INTEGER; }
 
