@@ -12,6 +12,7 @@ void initMe(void)
 
 void yyerror (char const *s) {
    fprintf (stderr, "%s\n", s);
+   printf("Line number: %d", getLineNumber());
    exit(3);
 }
 
@@ -33,17 +34,3 @@ int main (int argc, char *argv[])
     fclose(fp);
     return 0;
 }
-
-
-
-
-// main()
-// {
-//  return(yyparse());
-// }
-
-// yyerror(s)
-// char *s;
-// {
-//   fprintf(stderr, "%s\n",s);
-// }
